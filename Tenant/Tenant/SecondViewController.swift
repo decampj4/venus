@@ -15,6 +15,8 @@ class SecondViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var ratingImage: UIImageView!
     let ratingImages = ["1 Star Rating.png", "2 Star Rating.png", "3 Star Rating.png", "4 Star Rating.png", "5 Star Rating.png"]
     
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -33,6 +35,19 @@ class SecondViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func sendReview(sender: AnyObject) {
+        // Start spinner
+        let height = self.view.frame.height
+        let width = self.view.frame.width
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(self.view.center.x, self.view.center.y, width, height))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        activityIndicator.backgroundColor = UIColor.lightGrayColor()
+        activityIndicator.alpha = 0.5
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        
         let url = "http://tenant.place/api/v1/review?token=8y93z2TiXJEgTt7vQRouGM9IcymNVwZs"
         let session = NSURLSession.sharedSession()
         let request:NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
@@ -45,6 +60,9 @@ class SecondViewController: UIViewController, UITextViewDelegate {
             } else {
                 print(response)
             }
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.hidden = true
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
         }
         task.resume()
     }
