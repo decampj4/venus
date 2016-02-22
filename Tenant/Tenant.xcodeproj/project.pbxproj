@@ -20,6 +20,10 @@
 		85477C791C7A7E14006B92D0 /* 4 Star Rating.png in Resources */ = {isa = PBXBuildFile; fileRef = 85477C751C7A7E14006B92D0 /* 4 Star Rating.png */; };
 		85477C7A1C7A7E14006B92D0 /* 5 Star Rating.png in Resources */ = {isa = PBXBuildFile; fileRef = 85477C761C7A7E14006B92D0 /* 5 Star Rating.png */; };
 		85477C7C1C7A89C5006B92D0 /* 3 Star Rating.png in Resources */ = {isa = PBXBuildFile; fileRef = 85477C7B1C7A89C5006B92D0 /* 3 Star Rating.png */; };
+		85477C801C7AECD9006B92D0 /* App Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 85477C7F1C7AECD9006B92D0 /* App Icon.png */; };
+		85477C821C7AED25006B92D0 /* App Icon_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85477C811C7AED25006B92D0 /* App Icon_3x.png */; };
+		85477C841C7AEED4006B92D0 /* App Icon_0.5x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85477C831C7AEED4006B92D0 /* App Icon_0.5x.png */; };
+		85477C861C7AF203006B92D0 /* App Icon_6_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85477C851C7AF203006B92D0 /* App Icon_6_3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		85477C751C7A7E14006B92D0 /* 4 Star Rating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4 Star Rating.png"; path = "../../../assets/4 Star Rating.png"; sourceTree = "<group>"; };
 		85477C761C7A7E14006B92D0 /* 5 Star Rating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "5 Star Rating.png"; path = "../../../assets/5 Star Rating.png"; sourceTree = "<group>"; };
 		85477C7B1C7A89C5006B92D0 /* 3 Star Rating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "3 Star Rating.png"; path = "../../../assets/3 Star Rating.png"; sourceTree = "<group>"; };
+		85477C7F1C7AECD9006B92D0 /* App Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon.png"; sourceTree = "<group>"; };
+		85477C811C7AED25006B92D0 /* App Icon_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon_3x.png"; sourceTree = "<group>"; };
+		85477C831C7AEED4006B92D0 /* App Icon_0.5x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon_0.5x.png"; sourceTree = "<group>"; };
+		85477C851C7AF203006B92D0 /* App Icon_6_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Icon_6_3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,10 @@
 				85477C711C7A5885006B92D0 /* 1 Star Rating.png */,
 				85477C731C7A7E14006B92D0 /* 2 Star Rating.png */,
 				85477C7B1C7A89C5006B92D0 /* 3 Star Rating.png */,
+				85477C7F1C7AECD9006B92D0 /* App Icon.png */,
+				85477C851C7AF203006B92D0 /* App Icon_6_3x.png */,
+				85477C811C7AED25006B92D0 /* App Icon_3x.png */,
+				85477C831C7AEED4006B92D0 /* App Icon_0.5x.png */,
 				85477C751C7A7E14006B92D0 /* 4 Star Rating.png */,
 				85477C761C7A7E14006B92D0 /* 5 Star Rating.png */,
 			);
@@ -146,15 +158,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85477C841C7AEED4006B92D0 /* App Icon_0.5x.png in Resources */,
 				85477C791C7A7E14006B92D0 /* 4 Star Rating.png in Resources */,
 				85477C721C7A5885006B92D0 /* 1 Star Rating.png in Resources */,
+				85477C861C7AF203006B92D0 /* App Icon_6_3x.png in Resources */,
 				85477C5A1C7A4946006B92D0 /* LaunchScreen.storyboard in Resources */,
 				85477C641C7A49E0006B92D0 /* Review Icon_1x.png in Resources */,
 				85477C7C1C7A89C5006B92D0 /* 3 Star Rating.png in Resources */,
 				85477C621C7A495B006B92D0 /* Review Icon.png in Resources */,
+				85477C801C7AECD9006B92D0 /* App Icon.png in Resources */,
 				85477C771C7A7E14006B92D0 /* 2 Star Rating.png in Resources */,
 				85477C571C7A4946006B92D0 /* Assets.xcassets in Resources */,
 				85477C7A1C7A7E14006B92D0 /* 5 Star Rating.png in Resources */,
+				85477C821C7AED25006B92D0 /* App Icon_3x.png in Resources */,
 				85477C551C7A4946006B92D0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

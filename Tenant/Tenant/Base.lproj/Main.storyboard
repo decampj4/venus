@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ST0-4H-blV">
-                                <rect key="frame" x="0.0" y="28" width="600" height="523"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ST0-4H-blV">
+                                <rect key="frame" x="0.0" y="72" width="600" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reviewCell" id="iNm-nQ-Fsh">
@@ -36,8 +36,24 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="ciO-x0-Qfl"/>
                                 </connections>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IfH-TQ-kx2">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Reviews" id="r4E-Ng-1PZ"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ST0-4H-blV" firstAttribute="top" secondItem="IfH-TQ-kx2" secondAttribute="bottom" id="BIC-g1-BVA"/>
+                            <constraint firstItem="ST0-4H-blV" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="Bwk-SM-0DK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IfH-TQ-kx2" secondAttribute="trailing" constant="-20" id="Clb-DB-gVw"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="ST0-4H-blV" secondAttribute="bottom" id="Uzm-oM-u9o"/>
+                            <constraint firstItem="IfH-TQ-kx2" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="gPZ-De-9jo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ST0-4H-blV" secondAttribute="trailing" constant="-20" id="isI-6Z-D9R"/>
+                            <constraint firstItem="IfH-TQ-kx2" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="nyP-VO-nFL"/>
+                            <constraint firstItem="ST0-4H-blV" firstAttribute="top" secondItem="IfH-TQ-kx2" secondAttribute="bottom" id="wuO-Pt-mZU"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="acW-dT-cKf"/>
                     <connections>
@@ -107,7 +123,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.86351685353720276" green="0.9649845598270993" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.86274509803921573" green="0.96470588235294119" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Wpv-jD-p7t" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="0dt-5G-vM5"/>
