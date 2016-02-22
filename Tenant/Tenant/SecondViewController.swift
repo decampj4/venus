@@ -60,9 +60,11 @@ class SecondViewController: UIViewController, UITextViewDelegate {
             } else {
                 print(response)
             }
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.hidden = true
-            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.hidden = true
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            })
         }
         task.resume()
     }
