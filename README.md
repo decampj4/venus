@@ -1,1 +1,1 @@
-Tenant iOS App
+Tenant React Native App
