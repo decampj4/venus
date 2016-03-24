@@ -11,7 +11,7 @@ export default class Button extends React.Component {
     return (
       <TouchableHighlight
         onPress={this.props.handleButtonPress}
-        style={styles.button}
+        style={[styles.button, this.props.style]}
         underlayColor='gray'>
         <Text style={styles.buttonText}>
           {this.props.text}
@@ -33,7 +33,7 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     flex: 1,
-    alignSelf: 'center'
-    fontSize: 20
+    alignSelf: 'center',
+    fontSize: 20,
   }
 });

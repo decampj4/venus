@@ -3,6 +3,9 @@ import React from 'react-native';
 import ReviewsList from './components/reviews/reviews_list';
 import Review from './components/reviews/review';
 import AddReview from './components/reviews/add_review';
+import LandlordsList from './components/landlords/landlords_list';
+import Landlord from './components/landlords/landlord';
+import AddLandlord from './components/landlords/add_landlord';
 var {
   StyleSheet,
   Navigator,
@@ -15,6 +18,9 @@ const ROUTES = {
   reviewsList: ReviewsList,
   review: Review,
   addReview: AddReview,
+  landlordsList: LandlordsList,
+  landlord: Landlord,
+  addLandlord: AddLandlord,
 }
 
 export default class Main extends React.Component {
@@ -57,11 +63,18 @@ export default class Main extends React.Component {
       },
 
       Title(route, navigator, index, navState) {
+        // Convert the route name into words to get the subtitle
+        let subtitle = route.name.replace( /([A-Z])/g, " $1" );
+        subtitle = subtitle.charAt(0).toUpperCase() + subtitle.slice(1);
+
         return (
-          <Text style={styles.title}>Tenant</Text>
+          <View style={styles.titleView}>
+            <Text style={styles.title}>Tenant</Text>
+            <Text style={styles.subtitle}>{subtitle}</Text>
+          </View>
         );
       },
-    }
+    };
   }
 
   getNavigationBar() {
@@ -78,7 +91,7 @@ export default class Main extends React.Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{name: 'reviewsList', nextRoute: 'addReview', nextRouteText: 'Add Review'}}
+        initialRoute={{name: 'landlordsList', nextRoute: 'addLandlord', nextRouteText: 'Add Landlord'}}
         renderScene={this.handleRenderScene}
         configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }}
         navigationBar={this.getNavigationBar()}
@@ -98,10 +111,16 @@ var styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: '#C7A4B9',
   },
+  titleView: {
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
   title: {
     fontSize: 18,
     fontWeight: '700',
-    paddingTop: 7,
+  },
+  subtitle: {
+    fontSize: 18,
   },
   navBarButton: {
     fontSize: 18,
