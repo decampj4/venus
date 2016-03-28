@@ -34,6 +34,12 @@ export default class LandlordsList extends React.Component {
     this.loadLandlords();
   }
 
+  componentWillReceiveProps(nextProps) {
+    // This is a hacky way to reload the list when the navigator navigates back to this scene, but it's fine
+    // for now
+    this.loadLandlords();
+  }
+
   loadLandlords() {
     if (this.state.loading) {
       // Bail out immediately if we're already loading the landlords
@@ -91,14 +97,6 @@ export default class LandlordsList extends React.Component {
     );
   }
 
-  handleRenderFooter() {
-    return (
-      <View style={styles.listFooter}>
-        <Text>Pull down to refresh</Text>
-      </View>
-    );
-  }
-
   render() {
     return (
       <View>
@@ -108,7 +106,6 @@ export default class LandlordsList extends React.Component {
           dataSource={this.getDefaultDataSource().cloneWithRows(this.state.landlords)}
           renderRow={this.handleRenderRow.bind(this)}
           renderHeader={this.handleRenderHeader.bind(this)}
-          renderFooter={this.handleRenderFooter.bind(this)}
           onScroll={this.handleScroll.bind(this)}
           />
       </View>

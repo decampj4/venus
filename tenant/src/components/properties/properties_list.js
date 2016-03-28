@@ -33,6 +33,12 @@ export default class PropertiesList extends React.Component {
     this.loadProperties();
   }
 
+  componentWillReceiveProps(nextProps) {
+    // This is a hacky way to reload the list when the navigator navigates back to this scene, but it's fine
+    // for now
+    this.loadProperties();
+  }
+
   loadProperties() {
     if (this.state.loading) {
       // Bail out immediately if we're already loading the properties
@@ -90,14 +96,6 @@ export default class PropertiesList extends React.Component {
     );
   }
 
-  handleRenderFooter() {
-    return (
-      <View style={styles.listFooter}>
-        <Text>Pull down to refresh</Text>
-      </View>
-    );
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -107,7 +105,6 @@ export default class PropertiesList extends React.Component {
           dataSource={this.getDefaultDataSource().cloneWithRows(this.state.properties)}
           renderRow={this.handleRenderRow.bind(this)}
           renderHeader={this.handleRenderHeader.bind(this)}
-          renderFooter={this.handleRenderFooter.bind(this)}
           onScroll={this.handleScroll.bind(this)}
           />
       </View>

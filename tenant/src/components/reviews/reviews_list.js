@@ -33,6 +33,12 @@ export default class ReviewsList extends React.Component {
     this.loadReviews();
   }
 
+  componentWillReceiveProps(nextProps) {
+    // This is a hacky way to reload the list when the navigator navigates back to this scene, but it's fine
+    // for now
+    this.loadReviews();
+  }
+
   loadReviews() {
     if (this.state.loading) {
       // Bail out immediately if we're already loading the reviews
@@ -76,17 +82,9 @@ export default class ReviewsList extends React.Component {
         key={rowData.id}
         >
         <Text style={styles.listItem} numberOfLines={1}>
-          {rowData.content}
+          {`${rowData.rating} Stars - ${rowData.content}`}
         </Text>
       </TouchableHighlight>
-    );
-  }
-
-  handleRenderFooter() {
-    return (
-      <View style={styles.listFooter}>
-        <Text>Pull down to refresh</Text>
-      </View>
     );
   }
 
@@ -99,7 +97,6 @@ export default class ReviewsList extends React.Component {
           dataSource={this.getDefaultDataSource().cloneWithRows(this.state.reviews)}
           renderRow={this.handleRenderRow.bind(this)}
           renderHeader={this.handleRenderHeader.bind(this)}
-          renderFooter={this.handleRenderFooter.bind(this)}
           onScroll={this.handleScroll.bind(this)}
           />
       </View>
