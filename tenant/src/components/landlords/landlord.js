@@ -1,5 +1,5 @@
 import React from 'react-native';
-
+import PropertiesList from '../properties/properties_list';
 var {
   View,
   Text,
@@ -13,7 +13,16 @@ export default class Landlord extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Landlord</Text>
+        <View style={styles.attributesView}>
+          <Text style={styles.label}>Name</Text>
+          <Text style={styles.attribute}>{this.props.name}</Text>
+          <Text style={styles.label}>Company</Text>
+          <Text style={styles.attribute}>{this.props.company}</Text>
+          <Text style={styles.label}>Properties</Text>
+        </View>
+        <View style={styles.propertiesView}>
+          <PropertiesList landlordId={this.props.id} navigator={this.props.navigator} />
+        </View>
       </View>
     );
   }
@@ -25,30 +34,21 @@ var styles = StyleSheet.create({
     marginTop: 60,
   },
   label: {
-    fontSize: 30,
+    fontSize: 20,
+    fontWeight: '700',
+    marginLeft: 5
   },
-  ratingView: {
+  attribute: {
+    fontSize: 18,
+    marginLeft: 20,
+  },
+  attributesView: {
     flex: 1,
+    justifyContent: 'space-between',
   },
-  ratingLabel: {
-    flex: 5,
-  },
-  ratingImage: {
-    flex: 7,
-    resizeMode: 'stretch',
-    overflow: 'visible',
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  contentView: {
-    flex: 4
-  },
-  contentLabel: {
-    flex: 1,
-  },
-  contentScrollView: {
-    flex: 9,
+  propertiesView: {
+    flex: 2,
+    marginLeft: 5,
+    marginRight: 5,
   },
 });

@@ -6,6 +6,8 @@ import AddReview from './components/reviews/add_review';
 import LandlordsList from './components/landlords/landlords_list';
 import Landlord from './components/landlords/landlord';
 import AddLandlord from './components/landlords/add_landlord';
+import Property from './components/properties/property';
+import AddProperty from './components/properties/add_property';
 var {
   StyleSheet,
   Navigator,
@@ -21,6 +23,8 @@ const ROUTES = {
   landlordsList: LandlordsList,
   landlord: Landlord,
   addLandlord: AddLandlord,
+  property: Property,
+  addProperty: AddProperty,
 }
 
 export default class Main extends React.Component {
@@ -53,7 +57,7 @@ export default class Main extends React.Component {
         return (
           <TouchableHighlight
             onPress={() => {
-              navigator.push({name: route.nextRoute})
+              navigator.push({name: route.nextRoute, props: route.nextRouteProps})
             }}
             underlayColor='gray'
             >

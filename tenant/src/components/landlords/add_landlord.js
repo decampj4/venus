@@ -20,6 +20,13 @@ export default class AddLandlord extends React.Component {
     };
   }
 
+  containerTouched(event) {
+    for(let ref in this.refs) {
+      this.refs[ref].blur();
+    }
+    return false;
+  }
+
   handleAddLandlordButtonPress() {
     if (!this.state.name) {
       this.setState({errors: 'A name must be set'});
@@ -28,7 +35,15 @@ export default class AddLandlord extends React.Component {
 
     API.createLandlord({name: this.state.name, company: this.state.company})
       .then((landlord) => {
-        this.props.navigator.push({name: 'landlord', props: landlord})
+        this.props.navigator.replace({
+          name: 'landlord',
+          props: landlord,
+          nextRoute: 'addProperty',
+          nextRouteText: 'Add Property',
+          nextRouteProps: {
+            landlordId: landlord.id,
+          },
+        });
       })
       .catch((error) => {
         this.setState({errors: `Submission error - ${error}`});
@@ -49,7 +64,10 @@ export default class AddLandlord extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View 
+        style={styles.container}
+        onStartShouldSetResponder={this.containerTouched.bind(this)}
+        >
         {this.renderErrors()}
         <View style={styles.nameView}>
           <Text style={styles.label}>Name</Text>
@@ -57,6 +75,7 @@ export default class AddLandlord extends React.Component {
             style={styles.input}
             value={this.state.name}
             onChangeText={(text) => {this.setState({name: text, errors: ''})}}
+            ref='nameTextInput'
             />
         </View>
         <View style={styles.companyView}>
@@ -65,6 +84,7 @@ export default class AddLandlord extends React.Component {
             style={styles.input}
             value={this.state.company}
             onChangeText={(text) => {this.setState({company: text, errors: ''})}}
+            ref='companyTextInput'
             />
         </View>
         <View style={styles.submitView}>
@@ -116,5 +136,5 @@ var styles = StyleSheet.create({
   errorText: {
     color: 'red',
     fontSize: 16,
-  }
+  },
 });

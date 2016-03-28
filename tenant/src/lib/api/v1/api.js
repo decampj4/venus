@@ -32,20 +32,38 @@ module.exports = {
   },
 
   getReviewsByProperty(propertyId) {
-    let url = `${baseURL}reviews/by_property?token=${token}&landlordId=${propertyId}`;
+    let url = `${baseURL}reviews/by_property?token=${token}&id=${propertyId}`;
     let request = constructGetRequest(url);
     return fetchJSON(request);
   },
 
   getReviewsByLandlord(landlordId) {
-    let url = `${baseURL}reviews/by_landlord?token=${token}&landlordId=${landlordId}`;
+    let url = `${baseURL}reviews/by_landlord?token=${token}&id=${landlordId}`;
     let request = constructGetRequest(url);
+    return fetchJSON(request);
+  },
+
+  createReview(body) {
+    let url = `${baseURL}review?token=${token}`;
+    let request = constructPostRequest(url, body);
     return fetchJSON(request);
   },
 
   getProperties() {
     let url = `${baseURL}properties?token=${token}`;
     let request = constructGetRequest(url);
+    return fetchJSON(request);
+  },
+
+  getPropertiesByLandlord(landlordId) {
+    let url = `${baseURL}properties/by_landlord?token=${token}&id=${landlordId}`;
+    let request = constructGetRequest(url);
+    return fetchJSON(request);
+  },
+
+  createProperty(body) {
+    let url = `${baseURL}property?token=${token}`;
+    let request = constructPostRequest(url, body);
     return fetchJSON(request);
   },
 

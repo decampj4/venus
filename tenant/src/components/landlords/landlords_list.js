@@ -5,15 +5,20 @@ var {
   View,
   Text,
   ListView,
+  RefreshControl,
   TouchableHighlight,
 } = React;
+
+// The distance (in the y direction) that will trigger a refresh
+const PULLDOWN_DISTANCE = 40;
 
 export default class LandlordsList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      landlords: [{content: 'Loading...'}],
+      landlords: [],
+      loading: false,
     };
   }
 
@@ -26,17 +31,49 @@ export default class LandlordsList extends React.Component {
   }
 
   componentWillMount() {
-    API.getLandlords()
-      .then((landlords) => {
-        this.setState({landlords});
+    this.loadLandlords();
+  }
+
+  loadLandlords() {
+    if (this.state.loading) {
+      // Bail out immediately if we're already loading the landlords
+      return;
+    }
+
+    this.setState({
+      loading: true,
+    });
+    API.getLandlords().then((landlords) => {
+      this.setState({
+        landlords: landlords,
+        loading: false,
       });
+    });
+  }
+
+  handleScroll(event) {
+    if (event.nativeEvent.contentOffset.y < -PULLDOWN_DISTANCE) {
+      this.loadLandlords();
+    }
+  }
+
+  handleRenderHeader() {
+    return this.state.loading ? <View style={styles.listHeader}><Text>Loading</Text></View> : null;
   }
 
   handleRowPress(landlordId) {
     let landlord = this.state.landlords.find((landlord) => {
       return landlord.id === landlordId;
     });
-    this.props.navigator.push({name: 'landlord', props: landlord})
+    this.props.navigator.push({
+      name: 'landlord',
+      props: landlord,
+      nextRoute: 'addProperty',
+      nextRouteText: 'Add Property',
+      nextRouteProps: {
+        landlordId: landlord.id,
+      },
+    });
   }
 
   handleRenderRow(rowData) {
@@ -54,6 +91,14 @@ export default class LandlordsList extends React.Component {
     );
   }
 
+  handleRenderFooter() {
+    return (
+      <View style={styles.listFooter}>
+        <Text>Pull down to refresh</Text>
+      </View>
+    );
+  }
+
   render() {
     return (
       <View>
@@ -62,8 +107,10 @@ export default class LandlordsList extends React.Component {
           contentContainerStyle={styles.listViewContainer}
           dataSource={this.getDefaultDataSource().cloneWithRows(this.state.landlords)}
           renderRow={this.handleRenderRow.bind(this)}
-          >  
-        </ListView>
+          renderHeader={this.handleRenderHeader.bind(this)}
+          renderFooter={this.handleRenderFooter.bind(this)}
+          onScroll={this.handleScroll.bind(this)}
+          />
       </View>
     );
   }
@@ -92,5 +139,11 @@ var styles = StyleSheet.create({
   },
   listItem: {
     fontSize: 20,
-  }
+  },
+  listHeader: {
+    alignItems: 'center',
+  },
+  listFooter: {
+    alignItems: 'center',
+  },
 });

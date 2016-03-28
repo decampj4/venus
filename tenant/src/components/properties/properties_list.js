@@ -11,12 +11,12 @@ var {
 // The distance (in the y direction) that will trigger a refresh
 const PULLDOWN_DISTANCE = 40;
 
-export default class ReviewsList extends React.Component {
+export default class PropertiesList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      reviews: [],
+      properties: [],
       loading: false,
     };
   }
@@ -30,21 +30,21 @@ export default class ReviewsList extends React.Component {
   }
 
   componentWillMount() {
-    this.loadReviews();
+    this.loadProperties();
   }
 
-  loadReviews() {
+  loadProperties() {
     if (this.state.loading) {
-      // Bail out immediately if we're already loading the reviews
+      // Bail out immediately if we're already loading the properties
       return;
     }
 
     this.setState({
       loading: true,
     });
-    API.getReviewsByProperty(this.props.propertyId).then((reviews) => {
+    API.getPropertiesByLandlord(this.props.landlordId).then((properties) => {
       this.setState({
-        reviews: reviews,
+        properties: properties,
         loading: false,
       });
     });
@@ -52,7 +52,7 @@ export default class ReviewsList extends React.Component {
 
   handleScroll(event) {
     if (event.nativeEvent.contentOffset.y < -PULLDOWN_DISTANCE) {
-      this.loadReviews();
+      this.loadProperties();
     }
   }
 
@@ -60,11 +60,19 @@ export default class ReviewsList extends React.Component {
     return this.state.loading ? <View style={styles.listHeader}><Text>Loading</Text></View> : null;
   }
 
-  handleRowPress(reviewId) {
-    let review = this.state.reviews.find((review) => {
-      return review.id === reviewId;
+  handleRowPress(propertyId) {
+    let property = this.state.properties.find((property) => {
+      return property.id === propertyId;
     });
-    this.props.navigator.push({name: 'review', props: review})
+    this.props.navigator.push({
+      name: 'property',
+      props: property,
+      nextRoute: 'addReview',
+      nextRouteText: 'Add Review',
+      nextRouteProps: {
+        propertyId: property.id,
+      },
+    });
   }
 
   handleRenderRow(rowData) {
@@ -76,7 +84,7 @@ export default class ReviewsList extends React.Component {
         key={rowData.id}
         >
         <Text style={styles.listItem} numberOfLines={1}>
-          {rowData.content}
+          {`${rowData.street_address_one} ${rowData.city}`}
         </Text>
       </TouchableHighlight>
     );
@@ -96,7 +104,7 @@ export default class ReviewsList extends React.Component {
         <ListView
           style={styles.listView}
           contentContainerStyle={styles.listViewContainer}
-          dataSource={this.getDefaultDataSource().cloneWithRows(this.state.reviews)}
+          dataSource={this.getDefaultDataSource().cloneWithRows(this.state.properties)}
           renderRow={this.handleRenderRow.bind(this)}
           renderHeader={this.handleRenderHeader.bind(this)}
           renderFooter={this.handleRenderFooter.bind(this)}
